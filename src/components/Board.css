@@ -9,9 +9,23 @@
     width: 100px;
     height: 100px;
     background-color: #ebcbcb;
+    cursor: pointer;
 }
+
+.square:hover {
+    background-color: #f0f0f0;
+}
+  
+.square.filled {
+    cursor: not-allowed;
+}
+  
+.square.filled:hover {
+    background-color: #fff;
+} 
 
 .square-text {
     font-size: 2rem;
     font-weight: bold;
 }
+

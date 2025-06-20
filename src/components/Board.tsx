@@ -4,7 +4,7 @@ const Board = ({ squares, handleClick }: { squares: string[], handleClick: (i: n
     return (
         <div className='board'>
             {squares.map((square, i) => (
-                <button className='square' onClick={() => handleClick(i)}>
+                <button className={`square ${square ? 'filled' : ''}`} onClick={() => handleClick(i)}>
                     <span className='square-text'>{square}</span>
                 </button>
             ))}

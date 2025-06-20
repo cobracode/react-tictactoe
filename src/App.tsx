@@ -8,9 +8,10 @@ function App() {
   return (
     <div className='app'>
       <h1>Tic Tac Toe</h1>
+      {/* TODO: Add a status + reset button */}
       <Board squares={squares} handleClick={handleClick} />
     </div>
   )
 }
 
-export default App
+export default App;

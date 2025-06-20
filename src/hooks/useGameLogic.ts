@@ -12,12 +12,14 @@ export const useGameLogic = () => {
     const [player, setPlayer] = useState<string>(PLAYERS.X);
 
     const handleClick = (i: number) => {
-        const boardCopy = [...squares];
-        if (boardCopy[i] || calculateWinner(boardCopy)) {
+        if (squares[i] || calculateWinner(squares)) {
             return;
         }
-        boardCopy[i] = player;
+
+        const boardCopy = [...squares];
         setSquares(boardCopy);
+
+        boardCopy[i] = player;
         setPlayer(player === PLAYERS.X ? PLAYERS.O : PLAYERS.X);
     }
 
@@ -34,3 +36,7 @@ export const useGameLogic = () => {
 
     return { squares, handleClick };
 }
+
+/*
+
+*/
