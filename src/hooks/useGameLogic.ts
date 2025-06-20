@@ -9,10 +9,10 @@ const calculateWinner = (board: string[]) => {
     for (let i = 0; i < WINNING_COMBINATIONS.length; i++) {
         const [a, b, c] = WINNING_COMBINATIONS[i];
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-            alert(`${board[a]} wins!`);
             return board[a];
         }
     }
+
     return null;
 }
 
@@ -45,7 +45,3 @@ export const useGameLogic = () => {
 
     return { squares, handleClick, getStatus };
 }
-
-/*
-
-*/
