@@ -1,0 +1,17 @@
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5px;
+}
+
+.square {
+    width: 100px;
+    height: 100px;
+    background-color: #ebcbcb;
+}
+
+.square-text {
+    font-size: 2rem;
+    font-weight: bold;
+}

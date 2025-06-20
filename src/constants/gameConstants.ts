@@ -1,0 +1,1 @@
+export const INITIAL_SQUARES = Array(9).fill(null);
