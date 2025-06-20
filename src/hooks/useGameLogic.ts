@@ -43,5 +43,9 @@ export const useGameLogic = () => {
         return `${player}'s turn`;
     }
 
-    return { squares, handleClick, getStatus };
+    return {
+        squares,
+        handleClick,
+        getStatus,
+    };
 }

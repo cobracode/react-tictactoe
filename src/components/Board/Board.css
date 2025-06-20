@@ -5,6 +5,11 @@
     gap: 5px;
 }
 
+.disabled {
+    pointer-events: none;
+    filter: brightness(0.9);
+}
+
 .square {
     width: 100px;
     height: 100px;
