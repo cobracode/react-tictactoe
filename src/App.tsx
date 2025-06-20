@@ -1,14 +1,17 @@
 import './App.css'
-import Board from './components/Board'
+import Board from './components/Board/Board'
+import GameStatus from './components/GameStatus/GameStatus'
 import { useGameLogic } from './hooks/useGameLogic'
 
 function App() {
-  const { squares, handleClick } = useGameLogic();
+  const { squares, handleClick, getStatus } = useGameLogic();
+
+  const status = getStatus();
 
   return (
     <div className='app'>
       <h1>Tic Tac Toe</h1>
-      {/* TODO: Add a status + reset button */}
+      <GameStatus status={status} />
       <Board squares={squares} handleClick={handleClick} />
     </div>
   )

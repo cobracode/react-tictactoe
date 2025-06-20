@@ -1,11 +1,20 @@
 import { useState } from "react";
 import { INITIAL_SQUARES, PLAYERS, WINNING_COMBINATIONS } from "../constants/gameConstants";
 
-export const isBoardFull = (squares: string[]) => {
+const isBoardFull = (squares: string[]) => {
     return squares.every(square => square !== null);
 };
 
-// click, check winner, check board full, update board, switch player
+const calculateWinner = (board: string[]) => {
+    for (let i = 0; i < WINNING_COMBINATIONS.length; i++) {
+        const [a, b, c] = WINNING_COMBINATIONS[i];
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+            alert(`${board[a]} wins!`);
+            return board[a];
+        }
+    }
+    return null;
+}
 
 export const useGameLogic = () => {
     const [squares, setSquares] = useState<string[]>(INITIAL_SQUARES);
@@ -23,18 +32,18 @@ export const useGameLogic = () => {
         setPlayer(player === PLAYERS.X ? PLAYERS.O : PLAYERS.X);
     }
 
-    const calculateWinner = (board: string[]) => {
-        for (let i = 0; i < WINNING_COMBINATIONS.length; i++) {
-            const [a, b, c] = WINNING_COMBINATIONS[i];
-            if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-                alert(`${board[a]} wins!`);
-                return board[a];
-            }
+    const getStatus = () => {
+        const winner = calculateWinner(squares);
+        if (winner) {
+            return `${winner} wins!`;
         }
-        return null;
+        if (isBoardFull(squares)) {
+            return 'Draw!';
+        }
+        return `${player}'s turn`;
     }
 
-    return { squares, handleClick };
+    return { squares, handleClick, getStatus };
 }
 
 /*
