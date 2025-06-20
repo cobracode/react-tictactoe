@@ -1,32 +1,36 @@
 import { useState } from "react";
-import { INITIAL_SQUARES } from "../constants/gameConstants";
+import { INITIAL_SQUARES, PLAYERS, WINNING_COMBINATIONS } from "../constants/gameConstants";
+
+export const isBoardFull = (squares: string[]) => {
+    return squares.every(square => square !== null);
+};
+
+// click, check winner, check board full, update board, switch player
 
 export const useGameLogic = () => {
     const [squares, setSquares] = useState<string[]>(INITIAL_SQUARES);
-    const [xIsNext, setXIsNext] = useState<boolean>(true);
+    const [player, setPlayer] = useState<string>(PLAYERS.X);
 
     const handleClick = (i: number) => {
         const boardCopy = [...squares];
         if (boardCopy[i] || calculateWinner(boardCopy)) {
             return;
         }
-        boardCopy[i] = xIsNext ? 'X' : 'O';
+        boardCopy[i] = player;
         setSquares(boardCopy);
-        setXIsNext(!xIsNext);
+        setPlayer(player === PLAYERS.X ? PLAYERS.O : PLAYERS.X);
     }
 
     const calculateWinner = (board: string[]) => {
-        const lines = [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8],
-            [0, 3, 6],
-            [1, 4, 7],
-            [2, 5, 8],
-            [0, 4, 8],
-            [2, 4, 6],
-        ];
+        for (let i = 0; i < WINNING_COMBINATIONS.length; i++) {
+            const [a, b, c] = WINNING_COMBINATIONS[i];
+            if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                alert(`${board[a]} wins!`);
+                return board[a];
+            }
+        }
+        return null;
     }
 
-    return { squares, xIsNext, handleClick };
+    return { squares, handleClick };
 }
