@@ -35,12 +35,14 @@ export const useGameLogic = () => {
     const getStatus = () => {
         const winner = calculateWinner(squares);
         if (winner) {
-            return `${winner} wins!`;
+            return { status:`${winner} wins!`, gameOver: true };
         }
+
         if (isBoardFull(squares)) {
-            return 'Draw!';
+            return { status: 'Draw!', gameOver: true };
         }
-        return `${player}'s turn`;
+
+        return { status: `${player}'s turn`, gameOver: false };
     }
 
     return {

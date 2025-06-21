@@ -6,8 +6,7 @@ import { useGameLogic } from './hooks/useGameLogic'
 function App() {
   const { squares, handleClick, getStatus } = useGameLogic();
 
-  const status = getStatus();
-  const gameOver = status === 'Draw!' || status.endsWith(' wins!');
+  const { status, gameOver } = getStatus();
 
   return (
     <div className='app'>
